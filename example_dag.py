@@ -30,7 +30,7 @@ def check_sqs_queue():
         aws_secret_access_key=aws_secret_key,
         region_name=region,
     )
-
+    print(aws_access_key)
     sqs = session.resource('sqs')
     
     try:
