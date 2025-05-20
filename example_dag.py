@@ -5,7 +5,7 @@ import boto3
 import os
 
 # DAG-level constants
-QUEUE_NAME = 'your-sqs-queue-name'
+QUEUE_NAME = 'test'
 WARNING_THRESHOLD = 10
 CRITICAL_THRESHOLD = 20
 
@@ -19,7 +19,7 @@ def check_sqs_queue():
     # Get credentials from environment
     aws_access_key = os.getenv('AWS_ACCESS_KEY_ID')
     aws_secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
-    region = os.getenv('AWS_DEFAULT_REGION', 'us-east-1')
+    region = os.getenv('AWS_DEFAULT_REGION', 'ap-south-1')
     print("AWS_ACCESS_KEY_ID:", aws_access_key)
     print("AWS_SECRET_ACCESS_KEY:", aws_secret_key)
     if not aws_access_key or not aws_secret_key:
@@ -53,7 +53,7 @@ with DAG(
     dag_id='check_sqs_queue',
     default_args=default_args,
     start_date=datetime(2024, 1, 1),
-    schedule_interval='*/5 * * * *',
+    schedule_interval='* * * * *',
     catchup=False,
     tags=['sqs', 'monitoring'],
 ) as dag:
