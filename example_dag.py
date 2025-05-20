@@ -20,7 +20,8 @@ def check_sqs_queue():
     aws_access_key = os.getenv('AWS_ACCESS_KEY_ID')
     aws_secret_key = os.getenv('AWS_SECRET_ACCESS_KEY')
     region = os.getenv('AWS_DEFAULT_REGION', 'us-east-1')
-
+    print("AWS_ACCESS_KEY_ID:", aws_access_key)
+    print("AWS_SECRET_ACCESS_KEY:", aws_secret_key)
     if not aws_access_key or not aws_secret_key:
         raise ValueError("AWS credentials not found in environment variables.")
 
@@ -30,7 +31,6 @@ def check_sqs_queue():
         aws_secret_access_key=aws_secret_key,
         region_name=region,
     )
-    print(aws_access_key)
     sqs = session.resource('sqs')
     
     try:
